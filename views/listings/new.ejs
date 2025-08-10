@@ -1,13 +1,44 @@
+
 <% layout('layouts/boilerplate') -%>
 <body>
- <h1>create new listing</h1>
+ <br/>
+ <div class="row">
+    <div class="col-8 offset-2">
+        <h1>create new listing</h1>
     <form method="post" action="/listings">
-        <input name="title" placeholder="enter title" type="text"><br>
-        <textarea name="image" placeholder="enter url of image"></textarea><br>
-        <input name="price" placeholder="enter price" type="number"><br>
-        <input name="country" placeholder="enter country" type="text">
-        <br>
-        <button>add</button>
+       <div class="mb-3">
+        <label for="title" class="form-label">title</label>
+        <input name="title"
+        class="form-control"
+         placeholder="add a catchy title"
+         type="text">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="description">description</label>
+            <textarea name="image" class="form-control" placeholder="enter url of image"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="from-label">image URL</label>
+            <input name="image" placeholder="enter image link" type="text" class="form-control">
+        </div>
+        <div class="row">
+            <div class="mb-3 col-md-4">
+        <label class="form-label" for="price">price  </label>
+        <input name="price" class="form-control" placeholder="12000" type="number">
+       </div>
+        <div class="mb-3 col-md-8">
+            <label class="form-label">country</label>
+        <input name="country" class="form-control" placeholder="india" type="text">
+        </div>
+        </div>
+        <div class="mb-3" >
+            <label class="form-label">location</label>
+        <input name="location" class="form-control" placeholder="jaipur,rajasthan" type="text">
+        </div>
+       
+      
+        <button class="btn btn-dark add-btn">add</button><br/>
+<br/>
     </form>   
-</body>
-</html>
+    </div>
+    </div>
