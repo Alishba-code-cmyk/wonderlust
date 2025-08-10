@@ -2,23 +2,30 @@
 <% layout('layouts/boilerplate') -%>
 
 <body>
-    <!-- <h1>All Listings</h1>
-    <form method="get" action="/listings/new">
-        <button>Create New Listing</button> -->
-    <!-- </form> -->
-     <div class="row row-cols-lg-3">
- <% for (let listing of alllistings) { %>
-<div class="card" style="width: 20rem;">
-  <img src="<%=listing.image.url%>" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">
-<%= listing.title %><br/>
-&#8377;<%= listing.price.toLocaleString("en-IN") %>
+    <h1>All Listings</h1>
+  
+  
+     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2">
+     <% for (let listing of alllistings) { %>
+      <a href="/listings/<%= listing._id%>" class="listing-link">
+      <div class="card cloudflare" >
+      <img src="<%=listing.image.url%>" 
+      class="card-img-top" alt="listing image" 
+      style="height: 20rem;" >
+<div class="card-img-overlay"></div>
+   
+       <div class="card-body">
+     
+         <p class="card-text">
+      <b> <%= listing.title %></b><br/> 
+       &#8377;<%= listing.price.toLocaleString("en-IN") %> </p>
+         
+      </div>
+      </div>
+      <% } %>
+      </div>
+    </a>
+</body>
 
-    </p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-     <% } %>
-</div>
+
     
