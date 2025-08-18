@@ -19,16 +19,16 @@
  <div class="row">
             <div class="mb-3 col-md-4">
         <label class="form-label" for="price">price  </label>
-        <input name="listing[price]" class="form-control" placeholder="12000" type="number">
+        <input name="listing[price]" class="form-control" value="<%=listing.price%>" type="number">
        </div>
         <div class="mb-3 col-md-8">
             <label for="country"class="form-label">country</label>
-        <input name="listing[country]" class="form-control" placeholder="india" type="text">
+        <input name="listing[country]" class="form-control" value="<%=listing.country%>" type="text">
         </div>
         </div>
          <div class="mb-3" >
             <label for="location"class="form-label">location</label>
-        <input name="listing[location]" class="form-control" placeholder="jaipur,rajasthan" type="text">
+        <input name="listing[location]" class="form-control" value="<%=listing.location%>" type="text">
         </div>
        
 
@@ -37,8 +37,5 @@
 </body>
 </div></div>
 
-<button class="btn btn-dark edit-btn  mt-3">edit</button><br/><br/>
-</form>
-</body>
-</div></div>
+
 
