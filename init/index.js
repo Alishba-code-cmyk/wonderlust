@@ -1,7 +1,7 @@
 const mongoose=require("mongoose");
-const data=require("./data.js");
-const listing=require("../models/listing.js");
-
+const initData=require("./data.js");
+const Listing=require("../models/listing.js");
+const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
 main().then(()=>{
     console.log("connected to db");
 })
@@ -9,11 +9,11 @@ main().then(()=>{
     console.log(err);
 });
 async function main(){
-    await mongoose.connect('mongodb://127.0.0.1:27017/wonderlust')
+    await mongoose.connect(MONGO_URL);
 };
 const initDB=async ()=>{
-   await listing.deleteMany({});
-   await listing.insertMany(data.data);
+   await Listing.deleteMany({});
+   await Listing.insertMany(initData.data);
    console.log("data was initialised");
 };
 initDB();
