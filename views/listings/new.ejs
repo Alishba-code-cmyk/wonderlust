@@ -1,3 +1,4 @@
+
 <% layout('layouts/boilerplate') -%>
 <body>
  <br/>
@@ -10,11 +11,12 @@
         <input name="listing[title]"
         class="form-control"
          placeholder="add a catchy title"
-         type="text">
+         type="text"
+         required>
         </div>
         <div class="mb-3">
             <label class="form-label" for="description">description</label>
-            <textarea name="listing[description]" class="form-control" placeholder="enter url of image"></textarea>
+            <textarea name="listing[description]" class="form-control" placeholder="enter url of image"  required></textarea>
         </div>
         <div class="mb-3">
             <label for="image" class="from-label">image URL</label>
@@ -23,16 +25,16 @@
         <div class="row">
             <div class="mb-3 col-md-4">
         <label class="form-label" for="price">price  </label>
-        <input name="listing[price]" class="form-control" placeholder="12000" type="number">
+        <input name="listing[price]" class="form-control" placeholder="12000" type="number" required>
        </div>
         <div class="mb-3 col-md-8">
             <label class="form-label">country</label>
-        <input name="listing[country]" class="form-control" placeholder="india" type="text">
+        <input name="listing[country]" class="form-control" placeholder="india" type="text" required>
         </div>
         </div>
         <div class="mb-3" >
             <label class="form-label">location</label>
-        <input name="listing[location]" class="form-control" placeholder="jaipur,rajasthan" type="text">
+        <input  required  name="listing[location]" class="form-control" placeholder="jaipur,rajasthan" type="text">
         </div>
        
       
