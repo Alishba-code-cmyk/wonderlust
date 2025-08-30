@@ -1,0 +1,52 @@
+
+<% layout('layouts/boilerplate') -%>
+<body>
+ <br/>
+ <div class="row">
+    <div class="col-8 offset-2">
+        <h1>create new listing</h1>
+    <form method="post" action="/listings" novalidate class="needs-validation">
+       <div class="mb-3">
+        <label for="title" class="form-label">title</label>
+        <input name="listing[title]"
+        class="form-control"
+         placeholder="add a catchy title"
+         type="text"
+         required>
+         <div class="invalid-feedback">please enter a valid title</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="description">description</label>
+            <textarea name="listing[description]" class="form-control" placeholder="enter url of image"  required></textarea>
+              <div class="invalid-feedback">please write a description</div>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="from-label">image URL</label>
+            <input name="listing[image]" placeholder="enter image link" type="text" class="form-control">
+          <div class="invalid-feedback">please enter a valid image url</div>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-md-4">
+        <label class="form-label" for="price">price  </label>
+        <input name="listing[price]" class="form-control" placeholder="12000"  required>
+           <div class="invalid-feedback">please enter a valid price</div>
+    </div>
+        <div class="mb-3 col-md-8">
+            <label class="form-label">country</label>
+        <input name="listing[country]" class="form-control" placeholder="india" type="text" required>
+         <div class="invalid-feedback">please enter a valid country</div>
+    </div>
+        </div>
+        <div class="mb-3" >
+            <label class="form-label">location</label>
+        <input  required  name="listing[location]" class="form-control" placeholder="jaipur,rajasthan" type="text">
+         <div class="invalid-feedback">please enter a valid location</div>
+    </div>
+       
+      
+        <button class="btn btn-dark add-btn">add</button><br/>
+<br/>
+    </form>   
+    </div>
+    </div>
+</html>
