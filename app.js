@@ -9,6 +9,7 @@ const wrapAsync=require("./utils/wrapAsync.js");// custom wrapAsync
 const ExpressError=require("./utils/ExpressError.js");
 const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
 const {listingSchema}=require("./schema.js");
+const Review=require("./models/review.js");
 main().then(()=>{
     console.log("connected to db");
 })
@@ -84,6 +85,15 @@ app.delete("/listings/:id",wrapAsync( async (req,res)=>{
     console.log(deletedlisting);
     res.redirect("/listings");
 }));
+//review route
+app.post("/listings/:id/reviews", async(req,res)=>{
+   let listing= await Listing.findById(req.params.id);
+   let newReview=new Review(req.body.review);
+   listing.reviews.push(newReview);
+   await newReview.save();
+   await listing.save();
+   res.redirect(`/listings/${listing._id}`);
+});
 // app.get("/testlisting",async (req,res)=>{
 // let samplelisting=new Listing({
 //    title:"my home",

@@ -1,6 +1,6 @@
 const mongoose=require("mongoose");
-const schema=mongoose.Schema;
-const listingSchema=new schema({
+const Schema=mongoose.Schema;
+const listingSchema=new Schema({
     title:{
         type:String,
         required:true,},
@@ -17,6 +17,12 @@ const listingSchema=new schema({
     price: Number ,
     country:String,
     location:String,
+    reviews:[
+        {
+            type: Schema.Types.ObjectId,
+ref: "Review",
+        },
+    ],
 });
 const Listing=mongoose.model("Listing",listingSchema);
 module.exports=Listing;
