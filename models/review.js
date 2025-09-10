@@ -10,9 +10,9 @@ rating:{
     min:1,
     max:5
 },
-craetedAt:{
+createdAt:{
    type: Date,
    default: Date.now()
 }
 });
-module.exports=mongoose.model("review",reviewSchema)
+module.exports=mongoose.model("Review",reviewSchema)

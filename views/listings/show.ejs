@@ -1,11 +1,11 @@
 <% layout('layouts/boilerplate') -%>
-<body>
+
 <div class="row mt-3">
   <div class="col-8 offset-3">
   
     <h3><%= listing.title %></h3>
   </div>
-    <div class="show-card  col-6 offset-3">
+    <div class="show-card listing-card col-6 offset-3">
       <img
        src="<%=listing.image%>" 
         class="card-img-top show-image" 
@@ -15,8 +15,8 @@
           
              <%= listing.description %><br/>
              &#8377;<%= listing.price.toLocaleString("en-IN")  %><br/>
-             <%= listing.country %></li>
-             <%= listing.location %></li>
+             <%= listing.country %>
+             <%= listing.location %>
         </p>
       </div>
     </div>
@@ -35,16 +35,31 @@
   <form  action="/listings/<%=listing.id%>/reviews" class="needs-validation" novalidate method="post" >
     <div class="mb-3 mt-3">
       <label class="form-label" for="rating">rating</label>
-      <input class="from-control " type="range" min="1" max="5" id="rating" name="review[rating]">
+      <input class="form-control " type="range" min="1" max="5" id="rating" name="review[rating]">
     </div>
     <div class="mb-3 mt-3">
       <label class="form-label " for="comment" >comments</label>
-      <textarea required  class="from-control" name="review[comment]" id="comment" cols="30" rows="5"></textarea>
+      <textarea required  class="form-control" name="review[comment]" id="comment" cols="30" rows="5"></textarea>
       <div class="invalid-feedback" >please enter comments</div>
     </div>
     <button class="btn btn-outline-dark">submit</button>
   </form>
+
+<p><b>all reviews</b></p>
+
+<div class="row">
+ <% for(let review of listing.reviews){%>
+
+    <div class="card col-5 ms-3 mb-3">
+      <div class="card-body">
+        <h5 class="card-title">alishba</h5>
+        <p class="card-text"><%= review.comment %></p>
+        <p class="card-text"><%= review.rating%></p>
+      </div>
+    </div>
+  
+  <%}%>
+</div>
 </div>
 </div><br/>
 
-</body>
