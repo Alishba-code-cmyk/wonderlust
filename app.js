@@ -7,7 +7,7 @@ const ejsMate=require("ejs-mate");
 const ExpressError=require("./utils/ExpressError.js");
 const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
 const session=require("express-session");
-
+const flash=require("connect-flash");
 
 const listings=require("./routes/listing.js");
 const reviews=require("./routes/review.js");
@@ -31,13 +31,26 @@ app.use(methodOverride("_method"));
  const sessionOption={
     secret: "my secret code",
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie:{
+        expires: Date.now()+7*24*60*60*1000,
+       maxage: 7*24*60*60*1000,
+        httpOnly: true,
+    },
  };
- app.use(session(sessionOption));
 
-app.get("/",(req,res)=>{
+ app.get("/",(req,res)=>{
     res.send("hiii");
 });
+ app.use(session(sessionOption));
+ app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
+});
+
 
 
 

@@ -34,20 +34,25 @@ router.get("/:id",wrapAsync( async (req,res)=>{
    const listing=  await Listing.findById(id).populate("reviews");
    res.render("listings/show.ejs",{listing});
 }));
+
 //create route
 router.post("/",validateListing,
     wrapAsync (async(req,res,next)=>{
     const newListing=new Listing(req.body.listing);
 await newListing.save();
+req.flash("success", "new listing created");
+
 res.redirect("/listings");
 })
 );
+
 //edit route
 router.get("/:id/edit",wrapAsync( async (req,res)=>{
    let {id}=req.params;
    const listing =await Listing.findById(id);
     res.render("listings/edit.ejs",{listing});
 }));
+
 //update route
 router.put("/:id",validateListing,
     wrapAsync( async (req,res)=>{
