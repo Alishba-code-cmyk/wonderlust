@@ -17,21 +17,23 @@ const validateReview=(req,res,next)=>{
   }
 };
 //review route
-router.post("/:id/reviews",validateReview,
+router.post("/",validateReview,
     wrapAsync(async(req,res)=>{
    let listing= await Listing.findById(req.params.id);
    let newReview=new Review(req.body.review);
    listing.reviews.push(newReview._id);
    await newReview.save();
    await listing.save();
+   req.flash("success", "new review created");
    res.redirect(`/listings/${listing._id}`);
 }));
 //delete review route
-router.delete("/:id/reviews/:reviewId",
+router.delete("/:reviewId",
     wrapAsync(async(req,res)=>{
 let {id ,reviewId}=req.params;
 await Listing.findByIdAndUpdate(id, {$pull: {reviews: reviewId}});
 await Review.findById(reviewId);
+req.flash("success", "review deleted");
 res.redirect(`/listings/${id}`);
 }));
 module.exports=router;
