@@ -39,7 +39,7 @@ app.use(methodOverride("_method"));
     },
  };
 
- app.get("/",(req,res)=>{
+  app.get("/",(req,res)=>{
     res.send("hiii");
 });
  app.use(session(sessionOption));
@@ -50,6 +50,7 @@ app.use((req, res, next) => {
   res.locals.error = req.flash("error");
   next();
 });
+
 
 
 
