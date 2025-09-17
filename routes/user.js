@@ -31,10 +31,10 @@ router.get("/login",(req,res)=>{
 router.post("/login",
     passport.authenticate("local",{
         failureRedirect:"/login",
-        falilureFlash:true
+        failureFlash:true
     }),
     async(req,res)=>{
-res.flash("success","welcom back to wanderlust");
+req.flash("success","welcom back to wanderlust");
 res.redirect("/listings");
 });
 
