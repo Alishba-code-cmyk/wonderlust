@@ -24,6 +24,7 @@ module.exports.showlisting=async (req,res)=>{
   console.log(listing);
    res.render("listings/show.ejs",{listing});
 };
+
 module.exports.createListing=async(req,res,next)=>{
     const newListing=new Listing(req.body.listing);
     console.log(req.user._id);
