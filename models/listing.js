@@ -7,12 +7,8 @@ const listingSchema=new Schema({
         required:true,},
     description: String,
     image:{
-        type:String,
-        default: "https://unsplash.com/photos/lighthouse-stands-tall-on-a-rocky-coastline-QdDg2X_2gj0",
-        set:(v) =>
-             v === ""
-         ? "https://unsplash.com/photos/lighthouse-stands-tall-on-a-rocky-coastline-QdDg2X_2gj0"
-         :v,
+       url: String,
+       filename: String,
 },
     
     price: Number ,
