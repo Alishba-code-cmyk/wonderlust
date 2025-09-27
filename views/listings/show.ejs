@@ -31,8 +31,9 @@
 <% } %>
 
 <div class="col-8 offset-3 mb-3">
-  <hr>
+  
   <% if(currUser){ %>
+    <hr>
   <h4>Leave a review</h4>
   <form  action="/listings/<%=listing._id%>/reviews" class="needs-validation" novalidate method="post" >
    
@@ -53,7 +54,7 @@
   <input type="radio" id="first-rate5" name="review[rating]" value="5" />
   <label for="first-rate5" title="Amazing">5 stars</label>
 </fieldset>
-</div>
+    </div>
 
     <div class="mb-3 mt-3">
       <label class="form-label " for="comment" >comments</label>
@@ -61,31 +62,40 @@
       <div class="invalid-feedback" >please enter comments</div>
     </div>
     <button class="btn btn-outline-dark">submit</button>
+  
   </form>
 <% } %>
-<p><b>All reviews</b></p>
 
+<% if(listing.reviews.length>0){ %>
 <div class="row">
- <% for(let review of listing.reviews){%>
+     <p><b>All reviews</b></p>
+     <% for(let review of listing.reviews){%>
 
-    <div class="card col-5 ms-3 mb-3">
-      <div class="card-body">
+     <div class="card col-5 ms-3 mb-3">
+        <div class="card-body">
         <h5 class="card-title">@<%= review.author.username %></h5>
         <p class="starability-result card-text" data-rating="<%= review.rating %>">
         </p>
         <p class="card-text"><%= review.comment %></p>
-        
-    
-      
-       
       <form  class="mb-3" method="post" action="/listings/<%= listing._id%>/reviews/<%= review._id %>?_method=DELETE">
         <button class="btn btn-sm btn-dark">delete</button>
       </form>
-</div>
+       </div>
     </div>
-  
-  <%}%>
+    <%}%>
 </div>
+<% }%>
+
 </div></div>
+<div class="col-8 offset-3 mb-3">
+  <h3> where you will be</h3>
+  <div id="map" style="height: 500px; width: 100%;"></div>
+
+</div>
 </div><br/>
+
+<script src="/js/map.js"></script>
+
+
+
 
