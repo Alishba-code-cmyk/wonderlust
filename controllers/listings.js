@@ -31,6 +31,25 @@ module.exports.createListing=async(req,res,next)=>{
     const newListing=new Listing(req.body.listing);
     newListing.owner=req.user._id;
     newListing.image={url,filename};
+      // 🌍 Fetch coordinates from Nominatim
+  const response = await fetch(
+    `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(newListing.location)}`
+  );
+  const data = await response.json();
+
+  if (data.length > 0) {
+    newListing.geometry = {
+      type: "Point",
+      coordinates: [parseFloat(data[0].lon), parseFloat(data[0].lat)], // [lon, lat]
+    };
+  } else {
+    // fallback if not found
+    newListing.geometry = {
+      type: "Point",
+      coordinates: [0, 0],
+    };
+  }
+
 await newListing.save();
 req.flash("success", "new listing created");
 res.redirect("/listings");
