@@ -87,15 +87,17 @@
 <% }%>
 
 </div></div>
-<div class="col-8 offset-3 mb-3">
+<div class="col-6 offset-3 mb-3">
+  <hr>
   <h3> where you will be</h3>
-  <div id="map" style="height: 500px; width: 100%;"></div>
+  <div id="map" style="height: 200px; width: 100%;"></div>
 
 </div>
 </div><br/>
 <script>
   // Pass the server-side listing location to JS
-  const listingLocation = <%- JSON.stringify(listing.location.trim()) %>;
+  const listinglocation = <%- JSON.stringify(listing.location.trim()) %>;
+  const listingId="<%= listing.id%>";
 </script>
 <script src="/js/map.js"></script>
 
