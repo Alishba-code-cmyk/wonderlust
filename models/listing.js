@@ -14,6 +14,19 @@ const listingSchema=new Schema({
     price: Number ,
     country:String,
     location:String,
+    
+  // ✅ New field for coordinates
+  geometry: {
+    type: {
+      type: String,
+      enum: ["Point"], // GeoJSON "Point"
+      required: true,
+    },
+    coordinates: {
+      type: [Number], // [longitude, latitude]
+      required: true,
+    },
+  },
     reviews:[
         {
             type: Schema.Types.ObjectId,
