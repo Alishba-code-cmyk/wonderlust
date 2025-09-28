@@ -49,9 +49,7 @@ app.use(methodOverride("_method"));
     },
  };
 
-  app.get("/",(req,res)=>{
-    res.send("hiii");
-});
+
  app.use(session(sessionOption));
  app.use(flash());
 
