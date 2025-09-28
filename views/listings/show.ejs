@@ -93,7 +93,10 @@
 
 </div>
 </div><br/>
-
+<script>
+  // Pass the server-side listing location to JS
+  const listingLocation = <%- JSON.stringify(listing.location.trim()) %>;
+</script>
 <script src="/js/map.js"></script>
 
 
