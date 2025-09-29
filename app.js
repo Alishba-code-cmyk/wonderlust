@@ -11,8 +11,10 @@ const path=require("path");
 const methodOverride=require("method-override");
 const ejsMate=require("ejs-mate");
 const ExpressError=require("./utils/ExpressError.js");
-const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
+//const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
+const DBURL=process.env.ATLASDB_URL;
 const session=require("express-session");
+const mongoStore=require("connect-mongo");
 const flash=require("connect-flash");
 const passport=require("passport");
 const LocalStrategy=require("passport-local");
@@ -21,6 +23,7 @@ const User=require("./models/user.js");
 const listingRouter=require("./routes/listing.js");
 const reviewRouter=require("./routes/review.js");
 const userRouter=require("./routes/user.js");
+const { error } = require("console");
 
 main().then(()=>{
     console.log("connected to db");
@@ -28,9 +31,27 @@ main().then(()=>{
 .catch((err)=>{
     console.log(err);
 });
-async function main(){
-    await mongoose.connect(MONGO_URL);
-};
+async function main() {
+  try {
+    await mongoose.connect(DBURL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 10000, // 10 seconds
+    });
+    console.log("✅ Connected to MongoDB Atlas");
+  } catch (err) {
+    console.error("❌ MongoDB connection error:", err);
+  }
+}
+
+// Extra logging (optional)
+mongoose.connection.on("error", (err) => {
+  console.error("⚠️ Mongoose connection error:", err);
+});
+mongoose.connection.on("disconnected", () => {
+  console.warn("⚠️ Mongoose disconnected");
+});
+
 app.engine('ejs',ejsMate);
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
@@ -38,8 +59,21 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
  app.use(express.static(path.join(__dirname,"/public")));
 
+ const store=mongoStore.create({
+    mongourl: DBURL,
+   crypto:{
+  secret: process.env.SECRET,
+   },
+touchAfter: 24* 3600.
+});
+
+store.on("error",()=>{
+    console.log("error in mongo db",err);
+});
+
  const sessionOption={
-    secret: "my secret code",
+    store,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie:{
