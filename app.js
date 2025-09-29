@@ -60,14 +60,14 @@ app.use(methodOverride("_method"));
  app.use(express.static(path.join(__dirname,"/public")));
 
  const store=mongoStore.create({
-    mongourl: DBURL,
+    mongoUrl: DBURL,
    crypto:{
   secret: process.env.SECRET,
    },
 touchAfter: 24* 3600.
 });
 
-store.on("error",()=>{
+store.on("error",(err)=>{
     console.log("error in mongo db",err);
 });
 
