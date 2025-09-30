@@ -43,6 +43,7 @@ main{
     margin-right:1rem ;
     font-size: 1.2rem;
     margin-top: 1rem;
+    color: black;
 }
   
 .f-info-socials i:hover{
@@ -54,6 +55,7 @@ main{
   display: flex;
   align-items: center;
   justify-content: center;
+  color: black;
 }
  .f-info{
      height: 8rem;
