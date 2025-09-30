@@ -1,6 +1,7 @@
 const mongoose=require("mongoose");
 const Schema=mongoose.Schema;
 const Review=require("./review.js");
+const { required } = require("joi");
 const listingSchema=new Schema({
     title:{
         type:String,
@@ -26,6 +27,10 @@ const listingSchema=new Schema({
       type: [Number], // [longitude, latitude]
       required: true,
     },
+  },
+  category:{
+type: [Number],
+enum: ["mountains","arctic","farms","deserts"],
   },
     reviews:[
         {

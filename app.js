@@ -32,25 +32,9 @@ main().then(()=>{
     console.log(err);
 });
 async function main() {
-  try {
-    await mongoose.connect(DBURL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 10000, // 10 seconds
-    });
-    console.log("✅ Connected to MongoDB Atlas");
-  } catch (err) {
-    console.error("❌ MongoDB connection error:", err);
-  }
-}
+    await mongoose.connect(DBURL);
+};
 
-// Extra logging (optional)
-mongoose.connection.on("error", (err) => {
-  console.error("⚠️ Mongoose connection error:", err);
-});
-mongoose.connection.on("disconnected", () => {
-  console.warn("⚠️ Mongoose disconnected");
-});
 
 app.engine('ejs',ejsMate);
 app.set("view engine","ejs");
@@ -64,7 +48,7 @@ app.use(methodOverride("_method"));
    crypto:{
   secret: process.env.SECRET,
    },
-touchAfter: 24* 3600.
+touchAfter: 24* 3600
 });
 
 store.on("error",(err)=>{
