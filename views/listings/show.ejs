@@ -95,11 +95,12 @@
 </div>
 </div><br/>
 <script>
-  // Pass the server-side listing location to JS
+  // Pass server-side geometry directly to JS
+  const coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>; 
   const listinglocation = <%- JSON.stringify(listing.location.trim()) %>;
-  const listingId="<%= listing.id%>";
 </script>
 <script src="/js/map.js"></script>
+
 
 
 
